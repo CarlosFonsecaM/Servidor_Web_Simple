@@ -1,0 +1,47 @@
+---
+- name: Configurar servidor web Nginx
+  hosts: webservers
+  become: true
+
+  tasks:
+    - name: Actualizar apt cache
+      apt:
+        update_cache: yes
+
+    - name: Instalar Nginx
+      apt:
+        name: nginx
+        state: present
+      become: true
+
+    - name: Copiar archivo HTML a Nginx
+      copy:
+        src: files/index.html
+        dest: /var/www/html/index.html
+        owner: www-data
+        group: www-data
+        mode: '0644'
+
+    - name: Asegurar que Nginx está corriendo
+      service:
+        name: nginx
+        state: started
+        enabled: true
+
+    - name: Permitir trafico HTTP
+      community.general.ufw:
+        rule: allow
+        port: 80
+        proto: tcp
+
+    - name: Permitir trafico HTTPS
+      community.general.ufw:
+        rule: allow
+        port: 443
+        proto: tcp
+
+    - name: Habilitar UFW (forzado)
+      community.general.ufw:
+        state: enabled
+        policy: allow
+    
