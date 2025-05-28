@@ -1,7 +1,1 @@
-Ejemplo completo de proyecto Ansible tipo Playbook, que realiza una tarea bastante común: instalar y configurar un servidor web Nginx en Ubuntu, servir una página personalizada, y asegurarse de que el servicio esté activo.
-
-Objetivos:
-- Instalar Nginx en servidores Ubuntu
-- Copiar una página HTML personalizada
-- Habilitar y asegurar que Nginx esté corriendo
-
+Proyecto Ansible tipo Playbook que instala y configura un servidor web Nginx en Ubuntu, montar una página personalizada y asegura que el servicio esté activo.
